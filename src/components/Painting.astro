@@ -1,0 +1,68 @@
+---
+
+const { data, slug } = Astro.props ;
+const { title, img, price, sold } = data;
+
+---
+
+<article class="painting">
+  <a href={`/paintings/${slug}`}>
+    <div class="image-container">
+      <img src=`/${img}` alt={title} class="painting-image" />
+    </div>
+  </a>
+  <div class="painting-info">
+    <h3>{title}</h3>
+    <p>
+      {sold 
+        ? <><s>{price}€</s><br /><span class="sold-text">Vendido</span></> 
+        : `${price}€`}
+    </p>
+  </div>
+</article>
+
+<style>
+  .painting {
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .painting:hover {
+    transform: scale(1.05);
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .painting-image {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .painting-info {
+    margin-top: 8px;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .sold-text {
+    color: red; 
+    font-weight: bold;
+  }
+</style>

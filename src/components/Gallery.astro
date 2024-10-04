@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Painting from "./Painting.astro";
+
+const paints = await getCollection("paints");
+
+---
+
+<div class="title" id="work">
+  <h1>Gallery</h1>
+</div>
+<div class="gallery">
+  {paints.map(painting => <Painting {...painting} />)}
+</div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .title{
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    margin: 50px 0;
+  }
+</style>
